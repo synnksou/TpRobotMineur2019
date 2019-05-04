@@ -33,6 +33,8 @@ public class robotApps extends Application {
         gridPane.add(label,0,2);
         label.setTextFill(Color.BLUE);
 
+
+
         Button button=new Button("Jouer");
         gridPane.add(button,0,3);
         button.setOnAction(new EventHandler<ActionEvent>() {

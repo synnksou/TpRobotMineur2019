@@ -11,6 +11,7 @@
 
 package com.company;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -102,6 +103,7 @@ public class Main {
                                         break;
                                     case 3:
                                         fin = true;
+                                        plateau.save("firstesave",plateau);
                                         return;
                                 }
                             }
@@ -113,6 +115,8 @@ public class Main {
                             errorMatriceExecption = true;
                         } catch (InputMismatchException n) {
                             errorInputMismatchExecption = true;
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
                     } while (errorMatriceExecption);
                 } while (errorInputMismatchExecption);

@@ -12,6 +12,10 @@
 
 package com.company;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
@@ -21,12 +25,12 @@ import static com.company.Main.ANSI_CYAN;
 import static com.company.Main.ANSI_RED;
 import static com.company.Main.ANSI_WHITE;
 
-public class PlateauDeJeu {
+public class PlateauDeJeu implements Serializable {
     private ArrayList<Element> elements;
     private ArrayList<Robot> robots;
     private int nbl;
     private int nbc;
-    private Element[][] element;
+    public Element[][] element;
 
 
     public PlateauDeJeu(int nbc, int nbl) {
@@ -513,41 +517,70 @@ public class PlateauDeJeu {
 
     public static PlateauDeJeu creationMonde() throws InputMismatchException {
 
-        System.out.println("Choix nombre de" + ANSI_RED +" colonne"+ANSI_WHITE);
-        System.out.print(ANSI_CYAN+"> "+ANSI_WHITE);
+        System.out.println("Choix nombre de" + ANSI_RED + " colonne" + ANSI_WHITE);
+        System.out.print(ANSI_CYAN + "> " + ANSI_WHITE);
         Scanner scanner3 = new Scanner(System.in);
-        if (!(scanner3.hasNextInt())){
+        if (!(scanner3.hasNextInt())) {
             throw new InputMismatchException();
         }
         Integer nbc = scanner3.nextInt();
 
-        System.out.println("Choix nombre de" + ANSI_RED +" ligne" +ANSI_WHITE);
-        System.out.print(ANSI_CYAN+"> "+ANSI_WHITE);
+        System.out.println("Choix nombre de" + ANSI_RED + " ligne" + ANSI_WHITE);
+        System.out.print(ANSI_CYAN + "> " + ANSI_WHITE);
         Scanner scanner4 = new Scanner(System.in);
         int nbl = scanner4.nextInt();
 
-        if (nbc<=10 || nbc>=15){
-            while (nbc<=10 || nbc>=15){
-                System.out.println(ANSI_RED+"Vous avez essayer de prendre un x>15 ou x<10"+ANSI_WHITE);
-                System.out.println("Choix nombre de" + ANSI_RED +" colonne"+ANSI_WHITE);
-                System.out.print(ANSI_CYAN+"> "+ANSI_WHITE);
-                 scanner3 = new Scanner(System.in);
-                 nbc = scanner3.nextInt();
+        if (nbc <= 10 || nbc >= 15) {
+            while (nbc <= 10 || nbc >= 15) {
+                System.out.println(ANSI_RED + "Vous avez essayer de prendre un x>15 ou x<10 resaisir colonne" + ANSI_WHITE);
+                System.out.println("Choix nombre de" + ANSI_RED + " colonne" + ANSI_WHITE);
+                System.out.print(ANSI_CYAN + "> " + ANSI_WHITE);
+                scanner3 = new Scanner(System.in);
+                nbc = scanner3.nextInt();
             }
         }
-        if (nbl<=10 || nbl>=15){
-            while (nbl<=10 || nbl>=15){
-                System.out.println(ANSI_RED+"Vous avez essayer de prendre un x>15 ou x<10"+ANSI_WHITE);
-                System.out.println("Choix nombre de" + ANSI_RED +" ligne" +ANSI_WHITE);
-                System.out.print(ANSI_CYAN+"> "+ANSI_WHITE);
+        if (nbl <= 10 || nbl >= 15) {
+            while (nbl <= 10 || nbl >= 15) {
+                System.out.println(ANSI_RED + "Vous avez essayer de prendre un x>15 ou x<10 resaisir ligne" + ANSI_WHITE);
+                System.out.println("Choix nombre de" + ANSI_RED + " ligne" + ANSI_WHITE);
+                System.out.print(ANSI_CYAN + "> " + ANSI_WHITE);
                 scanner4 = new Scanner(System.in);
                 nbl = scanner4.nextInt();
             }
         }
-        return new PlateauDeJeu(nbc,nbl);
-
+        return new PlateauDeJeu(nbc, nbl);
     }
 
+    public boolean save(String string, PlateauDeJeu plateauDeJeu) throws IOException{
+        try {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("/Users/heinrichano/Documents/cheat/DUT INFO/M2103 - Bases de la programmation orientée objet/TP/TpRobotMineur2019"+string));
+        objectOutputStream.writeObject(plateauDeJeu);
+        objectOutputStream.close();
+        return true;
+        }catch (IOException n){
+            n.printStackTrace();
+            return false;
+        }
+    }
 
+    public int getNbc() {
+        return nbc;
+    }
+
+    public int getNbl() {
+        return nbl;
+    }
+
+    public ArrayList<Element> getElements() {
+        return elements;
+    }
+
+    public ArrayList<Robot> getRobots() {
+        return robots;
+    }
+
+    public Element[][] getElement() {
+        return element;
+    }
 
 }
