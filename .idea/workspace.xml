@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="07f0d5d4-8922-49dd-bff7-883e23ffc3ef" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/company/IA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="07f0d5d4-8922-49dd-bff7-883e23ffc3ef" name="Default" comment="Début ajout Ia et de la fonction de sauvegarde">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Apps/robotApps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Apps/robotApps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Mine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Mine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/PlateauDeJeu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/PlateauDeJeu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Uranium.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,7 +36,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2162">
+            <state relative-caret-position="2208">
               <caret line="105" column="73" selection-start-line="105" selection-start-column="73" selection-end-line="105" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -64,7 +57,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/PlateauDeJeu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2780">
+            <state relative-caret-position="397">
               <caret line="555" column="12" selection-start-line="555" selection-start-column="12" selection-end-line="555" selection-end-column="12" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -149,8 +142,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Course" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -198,6 +189,8 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Course" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -329,11 +322,20 @@
       <workItem from="1556877190300" duration="612000" />
       <workItem from="1556883324910" duration="1544000" />
       <workItem from="1556979512602" duration="109000" />
+      <workItem from="1557004401994" duration="251000" />
     </task>
+    <task id="LOCAL-00001" summary="Début ajout Ia et de la fonction de sauvegarde">
+      <created>1557004646597</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1557004646597</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113942000" />
+    <option name="totallyTimeSpent" value="114193000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -348,7 +350,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1602289" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16237482" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Learn" order="2" weight="0.3297568" />
       <window_info id="Designer" order="3" />
@@ -422,6 +424,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Début ajout Ia et de la fonction de sauvegarde" />
+    <option name="LAST_COMMIT_MESSAGE" value="Début ajout Ia et de la fonction de sauvegarde" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -732,7 +738,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2162">
+        <state relative-caret-position="2208">
           <caret line="105" column="73" selection-start-line="105" selection-start-column="73" selection-end-line="105" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -749,7 +755,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/PlateauDeJeu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2780">
+        <state relative-caret-position="397">
           <caret line="555" column="12" selection-start-line="555" selection-start-column="12" selection-end-line="555" selection-end-column="12" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
