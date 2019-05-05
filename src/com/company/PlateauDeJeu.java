@@ -18,9 +18,7 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
-import static com.company.Main.ANSI_CYAN;
-import static com.company.Main.ANSI_RED;
-import static com.company.Main.ANSI_WHITE;
+import static com.company.Main.*;
 
 public class PlateauDeJeu implements Serializable {
     private ArrayList<Element> elements;
@@ -52,6 +50,8 @@ public class PlateauDeJeu implements Serializable {
            iniRobot();
            iniBase();
        }catch (DejaOccuperExecption  dejaOccuperExecption){
+           robots.removeAll(robots);
+           elements.removeAll(elements);
            iniMonde(connu);
        }
     }
@@ -253,7 +253,7 @@ public class PlateauDeJeu implements Serializable {
                         }else if (element[i][j] instanceof RobotMPlu && x==2){
                             System.out.print(element[i][j].toString2(colorByAntoine2.getColorCyan()+element[i][j].toString()+colorByAntoine1.getColorWhite()));
                         }else if (element[i][j] instanceof MinePlu && x==2) {
-                            System.out.print(element[i][j].toString2(colorByAntoine2.getColorGreen() + element[i][j].toString() + colorByAntoine1.getColorWhite()));
+                            System.out.print(element[i][j].toString2(colorByAntoine2.getColorPurple()+ element[i][j].toString() + colorByAntoine1.getColorWhite()));
                         }else {
                             System.out.print(element[i][j].toString());
                         }
@@ -577,9 +577,10 @@ public class PlateauDeJeu implements Serializable {
             FileInputStream fileInputStream = new FileInputStream("/Users/heinrichano/Documents/cheat/DUT INFO/M2103 - Bases de la programmation orientée objet/TP/TpRobotMineur2019/save/" + string + ".ser");
             final ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             Object object = objectInputStream.readObject();
-         //   if (object instanceof PlateauDeJeu) {
+
                 plateauDeJeu = (PlateauDeJeu) object;
-           // }
+                System.out.println(ANSI_GREEN + "CHARGEMENT EFFECTUER !" + ANSI_WHITE);
+
         } catch (FileNotFoundException n){
             n.printStackTrace();
             n.getMessage();
@@ -588,7 +589,6 @@ public class PlateauDeJeu implements Serializable {
         }
         return plateauDeJeu;
     }
-
 
     public int getNbc() {
         return nbc;
