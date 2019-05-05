@@ -12,10 +12,7 @@
 
 package com.company;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
@@ -487,6 +484,9 @@ public class PlateauDeJeu implements Serializable {
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+// Methode pour savoir la mine au coordonnée voulue
+///////////////////////////////////////////////////////////////////////////
     public int quelleMine(Coordonnee coordonnee){
         if (element[coordonnee.getX()][coordonnee.getY()].equals(elements.get(0))){
             return 0;
@@ -551,17 +551,44 @@ public class PlateauDeJeu implements Serializable {
         return new PlateauDeJeu(nbc, nbl);
     }
 
-    public boolean save(String string, PlateauDeJeu plateauDeJeu) throws IOException{
+    ///////////////////////////////////////////////////////////////////////////
+    // Function for save and load                                            //
+    ///////////////////////////////////////////////////////////////////////////
+
+    public static boolean save(String string, PlateauDeJeu plateauDeJeu) throws Exception{
         try {
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("/Users/heinrichano/Documents/cheat/DUT INFO/M2103 - Bases de la programmation orientée objet/TP/TpRobotMineur2019"+string));
+            FileOutputStream fileOutputStream = new FileOutputStream("/Users/heinrichano/Documents/cheat/DUT INFO/M2103 - Bases de la programmation orientée objet/TP/TpRobotMineur2019/save/"+string+".ser");
+          final ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(plateauDeJeu);
         objectOutputStream.close();
         return true;
-        }catch (IOException n){
+        } catch (NotSerializableException n){
+            n.printStackTrace();
+            return false;
+        } catch (IOException n){
             n.printStackTrace();
             return false;
         }
     }
+
+    public static PlateauDeJeu load(String string) throws Exception {
+        PlateauDeJeu plateauDeJeu = new PlateauDeJeu(0,0);
+        try {
+            FileInputStream fileInputStream = new FileInputStream("/Users/heinrichano/Documents/cheat/DUT INFO/M2103 - Bases de la programmation orientée objet/TP/TpRobotMineur2019/save/" + string + ".ser");
+            final ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            Object object = objectInputStream.readObject();
+         //   if (object instanceof PlateauDeJeu) {
+                plateauDeJeu = (PlateauDeJeu) object;
+           // }
+        } catch (FileNotFoundException n){
+            n.printStackTrace();
+            n.getMessage();
+        } catch (IOException n){
+            n.printStackTrace();
+        }
+        return plateauDeJeu;
+    }
+
 
     public int getNbc() {
         return nbc;
@@ -569,6 +596,26 @@ public class PlateauDeJeu implements Serializable {
 
     public int getNbl() {
         return nbl;
+    }
+
+    public void setElement(Element[][] element) {
+        this.element = element;
+    }
+
+    public void setElements(ArrayList<Element> elements) {
+        this.elements = elements;
+    }
+
+    public void setNbc(int nbc) {
+        this.nbc = nbc;
+    }
+
+    public void setNbl(int nbl) {
+        this.nbl = nbl;
+    }
+
+    public void setRobots(ArrayList<Robot> robots) {
+        this.robots = robots;
     }
 
     public ArrayList<Element> getElements() {

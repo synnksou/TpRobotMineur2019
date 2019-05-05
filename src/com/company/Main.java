@@ -22,18 +22,30 @@ public class Main {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
 
-    public static void main(String[] args) throws DejaOccuperExecption, InputMismatchException{
+    public static void main(String[] args) throws Exception{
         boolean errorDejaOccuperExecption = false;
         boolean errorInputMismatchExecption = false;
         boolean errorMatriceExecption=false;
         boolean errorIllegaltArgument =false;
-
+        PlateauDeJeu plateau=null;
         Main.affichageRegle();
+        System.out.println("Voulez vous saisir une sauvegarde ? oui ou non " + ANSI_RED +"Attention il faut avoir une sauvegarde pour ça" + ANSI_WHITE);
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(ANSI_CYAN + "> " + ANSI_WHITE);
+        String string3 = scanner.nextLine();
 
+        switch (string3) {
+            case "oui":
+                plateau=demandeDeChargement(plateau);
+                System.out.println(ANSI_GREEN+"CHARGEMENT EFFECTUER !" + ANSI_WHITE);
+                break;
+            case "non":
+                boolean connu = choixDecouvert();
+               plateau=PlateauDeJeu.creationMonde();
+                plateau.iniMonde(connu);
+                break;
+        }
 
-        boolean connu = choixDecouvert();
-        PlateauDeJeu plateau= PlateauDeJeu.creationMonde();
-        plateau.iniMonde(connu);
                 do {
                     do {
                         try {
@@ -184,6 +196,25 @@ public class Main {
         System.out.println("Si vous voulez"+ANSI_GREEN+" le monde découvert "+ANSI_WHITE+"pour faciliter le test du programme");
         System.out.println("Taper "+ANSI_CYAN+"1"+ANSI_WHITE+" si pour non-découvert taper "+ANSI_RED+"2"+ANSI_WHITE);
         System.out.println("****************************************************");
+    }
+
+    public static PlateauDeJeu demandeDeChargement(PlateauDeJeu plateau) throws Exception{
+        boolean errorMistmath=false;
+        boolean res=false;
+        System.out.println("Voulez vous saisir une Sauvegarde ? oui ou non");
+        do {
+            try {
+                        System.out.println("Saisir le nom du fichier sans . ");
+                        Scanner scanner2 = new Scanner(System.in);
+                        System.out.print(ANSI_CYAN + "> " + ANSI_WHITE);
+                        String string2 = scanner2.nextLine();
+                        plateau=PlateauDeJeu.load(string2);
+
+            } catch (InputMismatchException n) {
+                errorMistmath = true;
+            }
+        }while (errorMistmath);
+        return plateau;
     }
 }
 

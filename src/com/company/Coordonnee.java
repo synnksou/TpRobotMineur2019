@@ -12,7 +12,9 @@
 
 package com.company;
 
-public class Coordonnee{
+import java.io.Serializable;
+
+public class Coordonnee implements Serializable {
     private int x;
     private int y;
 

@@ -12,7 +12,9 @@
 
 package com.company;
 
-public abstract class Element{
+import java.io.Serializable;
+
+public abstract class Element implements Serializable {
     private Coordonnee coordonnee;
     private boolean isConnu;
 
