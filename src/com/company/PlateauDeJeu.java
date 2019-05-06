@@ -2,7 +2,7 @@
  * TP   ROBOT   MINEUR  2019
  * @author Heinrich Antoine
  * @groupe A2
- * @version V0.2
+ * @version V0.3 FINAL
  * @commentaire : Pour l'inspection de la methode move du Diagrame de Sequence
  *                Methode Down(),up(),left(),right() dans la Classe Robot
  *                Methode DeplacementRobotUra() ou DeplacementRobotPlu() dans la classe PlateauDeJeu
@@ -13,12 +13,14 @@
 package com.company;
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
-import static com.company.Main.*;
+import static com.company.ColorByAntoine.*;
 
 public class PlateauDeJeu implements Serializable {
     private ArrayList<Element> elements;
@@ -515,39 +517,53 @@ public class PlateauDeJeu implements Serializable {
         return super.equals(obj);
     }
 
+
     public static PlateauDeJeu creationMonde() throws InputMismatchException {
-
-        System.out.println("Choix nombre de" + ANSI_RED + " colonne" + ANSI_WHITE);
-        System.out.print(ANSI_CYAN + "> " + ANSI_WHITE);
-        Scanner scanner3 = new Scanner(System.in);
-        if (!(scanner3.hasNextInt())) {
-            throw new InputMismatchException();
-        }
-        Integer nbc = scanner3.nextInt();
-
-        System.out.println("Choix nombre de" + ANSI_RED + " ligne" + ANSI_WHITE);
-        System.out.print(ANSI_CYAN + "> " + ANSI_WHITE);
-        Scanner scanner4 = new Scanner(System.in);
-        int nbl = scanner4.nextInt();
-
-        if (nbc <= 10 || nbc >= 15) {
-            while (nbc <= 10 || nbc >= 15) {
-                System.out.println(ANSI_RED + "Vous avez essayer de prendre un x>15 ou x<10 resaisir colonne" + ANSI_WHITE);
+             Integer nbc = new Integer(0);
+             Integer nbl = new Integer(0);
+            boolean erro = false;
+        do {
+            try {
                 System.out.println("Choix nombre de" + ANSI_RED + " colonne" + ANSI_WHITE);
                 System.out.print(ANSI_CYAN + "> " + ANSI_WHITE);
-                scanner3 = new Scanner(System.in);
+                Scanner scanner3 = new Scanner(System.in);
+                if (!(scanner3.hasNextInt())) {
+                    throw new InputMismatchException();
+                }
                 nbc = scanner3.nextInt();
-            }
-        }
-        if (nbl <= 10 || nbl >= 15) {
-            while (nbl <= 10 || nbl >= 15) {
-                System.out.println(ANSI_RED + "Vous avez essayer de prendre un x>15 ou x<10 resaisir ligne" + ANSI_WHITE);
+
                 System.out.println("Choix nombre de" + ANSI_RED + " ligne" + ANSI_WHITE);
                 System.out.print(ANSI_CYAN + "> " + ANSI_WHITE);
-                scanner4 = new Scanner(System.in);
+                Scanner scanner4 = new Scanner(System.in);
                 nbl = scanner4.nextInt();
+                if (!(nbc>10 || nbc<15 && nbl>10 || nbl<15)) {
+                    if (nbc <= 10 || nbc >= 15) {
+                        while (nbc <= 10 || nbc >= 15) {
+                            System.out.println(ANSI_RED + "Vous avez essayer de prendre un x>15 ou x<10 resaisir colonne" + ANSI_WHITE);
+                            System.out.println("Choix nombre de" + ANSI_RED + " colonne" + ANSI_WHITE);
+                            System.out.print(ANSI_CYAN + "> " + ANSI_WHITE);
+                            scanner3 = new Scanner(System.in);
+                            nbc = scanner3.nextInt();
+                        }
+                    }
+                    if (nbl <= 10 || nbl >= 15) {
+                        while (nbl <= 10 || nbl >= 15) {
+                            System.out.println(ANSI_RED + "Vous avez essayer de prendre un x>15 ou x<10 resaisir ligne" + ANSI_WHITE);
+                            System.out.println("Choix nombre de" + ANSI_RED + " ligne" + ANSI_WHITE);
+                            System.out.print(ANSI_CYAN + "> " + ANSI_WHITE);
+                            scanner4 = new Scanner(System.in);
+                            nbl = scanner4.nextInt();
+                        }
+                    }
+                }else {
+                    erro=false;
+                }
+
+            }catch (InputMismatchException n){
+                erro=true;
+                System.out.println(ANSI_RED+"AUTRE QUE UN ENTIER A ETAIT SAISI, LA FONCTION CE RELANCE"+ANSI_WHITE);
             }
-        }
+        }while (erro);
         return new PlateauDeJeu(nbc, nbl);
     }
 
@@ -557,10 +573,13 @@ public class PlateauDeJeu implements Serializable {
 
     public static boolean save(String string, PlateauDeJeu plateauDeJeu) throws Exception{
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("/Users/heinrichano/Documents/cheat/DUT INFO/M2103 - Bases de la programmation orientée objet/TP/TpRobotMineur2019/save/"+string+".ser");
+            String actualDirectory = Paths.get("").toAbsolutePath().toString();
+            FileOutputStream fileOutputStream = new FileOutputStream(actualDirectory+"/save/"+string+".ser");
           final ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(plateauDeJeu);
         objectOutputStream.close();
+        System.out.println(ANSI_GREEN+"FICHIER SAUVEGARDER !"+ANSI_WHITE);
+        System.out.println(ANSI_CYAN + "Chemin : "+ANSI_WHITE +actualDirectory+"/save/"+ANSI_RED+string+ANSI_WHITE);
         return true;
         } catch (NotSerializableException n){
             n.printStackTrace();
@@ -570,17 +589,15 @@ public class PlateauDeJeu implements Serializable {
             return false;
         }
     }
-
     public static PlateauDeJeu load(String string) throws Exception {
         PlateauDeJeu plateauDeJeu = new PlateauDeJeu(0,0);
         try {
-            FileInputStream fileInputStream = new FileInputStream("/Users/heinrichano/Documents/cheat/DUT INFO/M2103 - Bases de la programmation orientée objet/TP/TpRobotMineur2019/save/" + string + ".ser");
+            String actualDirectory = Paths.get("").toAbsolutePath().toString();
+            FileInputStream fileInputStream = new FileInputStream(actualDirectory+"/save/"+ string + ".ser");
             final ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             Object object = objectInputStream.readObject();
-
                 plateauDeJeu = (PlateauDeJeu) object;
                 System.out.println(ANSI_GREEN + "CHARGEMENT EFFECTUER !" + ANSI_WHITE);
-
         } catch (FileNotFoundException n){
             n.printStackTrace();
             n.getMessage();
@@ -589,6 +606,9 @@ public class PlateauDeJeu implements Serializable {
         }
         return plateauDeJeu;
     }
+
+
+
 
     public int getNbc() {
         return nbc;

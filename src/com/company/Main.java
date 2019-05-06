@@ -12,6 +12,7 @@
 package com.company;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -150,9 +151,11 @@ public class Main {
         System.out.println(ANSI_RED + "RUra " + ANSI_WHITE + ": Robot Mineur d'Uranium");
         System.out.println(ANSI_CYAN + "RPlu " + ANSI_WHITE + ": Robot Mineur de Plutonium");
         System.out.println("****************************************************");
-        System.out.println("Il peut avoir des " + ANSI_RED + "EXEPCTION" + ANSI_WHITE + " qui peuve ce lancer");
+        System.out.println("Il peut avoir une" + ANSI_RED + "EXEPCTION dejaOccuper"  + ANSI_WHITE + " qui peut ce lancer");
         System.out.println("Il suffira de relancer l'application");
         System.out.println("****************************************************");
+        System.out.println("La partie est save automatiquement au nom de "+ANSI_PURPLE+"firstesave"+ANSI_WHITE );
+        System.out.println(ANSI_CYAN+"Au chemin"+ANSI_WHITE+ANSI_RED+Paths.get("").toAbsolutePath().toString()+"/save/"+ANSI_WHITE);
     }
 
     public static String affichageChoixDeDeplacement() {

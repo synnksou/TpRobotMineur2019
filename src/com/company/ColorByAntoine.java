@@ -16,27 +16,17 @@ import java.awt.*;
 
 public class ColorByAntoine{
 
-    public  final String ANSI_RESET;
-    public  final String ANSI_BLACK;
-    public  final String ANSI_RED;
-    public  final String ANSI_GREEN;
-    public final String ANSI_YELLOW;
-    public final String ANSI_BLUE;
-    public final String ANSI_PURPLE;
-    public final String ANSI_CYAN;
-    public  final String ANSI_WHITE;
+    public final static String ANSI_RESET = "\u001B[0m";
+    public final static String  ANSI_BLACK = "\u001B[30m";
+    public final static String ANSI_RED = "\u001B[31m";
+    public final static String ANSI_GREEN = "\u001B[32m";
+    public final static String ANSI_YELLOW = "\u001B[33m";
+    public final static String ANSI_BLUE = "\u001B[34m";
+    public final static String ANSI_PURPLE = "\u001B[35m";
+    public final static String ANSI_CYAN = "\u001B[36m";
+    public final static String ANSI_WHITE = "\u001B[37m";
 
-    public ColorByAntoine() {
-        ANSI_RESET = "\u001B[0m";
-        ANSI_BLACK = "\u001B[30m";
-        ANSI_RED = "\u001B[31m";
-        ANSI_GREEN = "\u001B[32m";
-        ANSI_YELLOW = "\u001B[33m";
-        ANSI_BLUE = "\u001B[34m";
-        ANSI_PURPLE = "\u001B[35m";
-        ANSI_CYAN = "\u001B[36m";
-        ANSI_WHITE = "\u001B[37m";
-    }
+
 
     public String getColorPurple(){
         return ANSI_PURPLE;
