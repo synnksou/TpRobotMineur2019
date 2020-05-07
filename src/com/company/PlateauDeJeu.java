@@ -348,7 +348,7 @@ public class PlateauDeJeu implements Serializable {
     }
 
     public void choixDeDeplacement(String d, Robot robotPlu, Coordonnee coordonnee, Coordonnee nextCoordonne) throws DejaOccuperExecption {
-        Vide vide;
+        //Vide vide;
         Element temporyElement;
         if (d.equals("d")) {
             int y = nextCoordonne.getY() + 1;
